@@ -11,9 +11,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="TodayScreen" component={TodayScreen} />
-        <Tab.Screen name="WeekScreen" component={WeekScreen} />
-        <Tab.Screen name="SettingScreen" component={SettingScreen} />
+        <Tab.Screen name="Today" component={TodayScreen} />
+        <Tab.Screen name="Week" component={WeekScreen} />
+        <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
