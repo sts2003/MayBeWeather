@@ -52,6 +52,8 @@ const TodayScreen = () => {
             return res.json();
           })
           .then((json) => {
+            console.log(json);
+
             const temp = String(json.main.temp).split(".")[0];
             const minTemp = String(json.main.temp_min).split(".")[0];
             const maxTemp = String(json.main.temp_max).split(".")[0];
@@ -67,6 +69,10 @@ const TodayScreen = () => {
             switch (status) {
               case "clear sky":
                 setWeatherStatus("날씨가 좋아요. 외출은 어때요?");
+                break;
+
+              case "moderate rain":
+                setWeatherStatus("비가 와요. 우산은 챙기셨죠?");
                 break;
 
               case "few clouds":
@@ -124,13 +130,12 @@ const TodayScreen = () => {
       </View>
       <View style={styles.box_4}>
         <View style={styles.box_4_box}>
-          <Text style={styles.tempGuideText}>최저기온</Text>
-          <Text style={styles.minMaxTemp}>{minTemp}°C</Text>
-        </View>
-
-        <View style={styles.box_4_box}>
-          <Text style={styles.tempGuideText}>최고기온</Text>
+          <Text style={styles.tempGuideText1}>최고기온</Text>
           <Text style={styles.minMaxTemp}>{maxTemp}°C</Text>
+        </View>
+        <View style={styles.box_4_box}>
+          <Text style={styles.tempGuideText2}>최저기온</Text>
+          <Text style={styles.minMaxTemp}>{minTemp}°C</Text>
         </View>
       </View>
     </View>
@@ -217,10 +222,17 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
   },
 
-  tempGuideText: {
+  tempGuideText1: {
     fontSize: 20,
     fontWeight: `500`,
     padding: 5,
+    color: "red",
+  },
+  tempGuideText2: {
+    fontSize: 20,
+    fontWeight: `500`,
+    padding: 5,
+    color: "blue",
   },
 
   minMaxTemp: {
