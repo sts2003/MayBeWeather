@@ -1,10 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  FlatList,
+} from "react-native";
 import * as Location from "expo-location";
 
 const WEATHER_API_KEY = `6cee116a4c0358ba4e4c62b654c4748d`;
 
+const Item = ({ time, temp }) => {
+  return (
+    <View style={styles.listBox}>
+      <Text>{time}</Text>
+      <Text>{temp}</Text>
+    </View>
+  );
+};
+
 const WeekScreen = () => {
+  const renderItem = ({ item }) => {
+    return (
+      <Item time={String(item.dateTime).split(` `)[1]} temp={item.temp}></Item>
+    );
+  };
+
   const [data0Date, setData0Date] = useState();
   const [data1Date, setData1Date] = useState();
   const [data2Date, setData2Date] = useState();
@@ -235,13 +257,44 @@ const WeekScreen = () => {
           </TouchableOpacity>
         )}
       </View>
-      <View style={styles.box2}>
-        {tab === 0 && <Text>1111</Text>}
-        {tab === 1 && <Text>2222</Text>}
-        {tab === 2 && <Text>3333</Text>}
-        {tab === 3 && <Text>4444</Text>}
-        {tab === 4 && <Text>5555</Text>}
-      </View>
+
+      <SafeAreaView style={styles.box2}>
+        {tab === 0 && (
+          <FlatList
+            data={data0Date && data0Date}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.dateTime}
+          />
+        )}
+        {tab === 1 && (
+          <FlatList
+            data={data1Date && data1Date}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.dateTime}
+          />
+        )}
+        {tab === 2 && (
+          <FlatList
+            data={data2Date && data2Date}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.dateTime}
+          />
+        )}
+        {tab === 3 && (
+          <FlatList
+            data={data3Date && data3Date}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.dateTime}
+          />
+        )}
+        {tab === 4 && (
+          <FlatList
+            data={data4Date && data4Date}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.dateTime}
+          />
+        )}
+      </SafeAreaView>
     </View>
   );
 };
@@ -268,8 +321,8 @@ const styles = StyleSheet.create({
   standardBtn: {
     width: `19%`,
     height: 35,
-    backgroundColor: `#D6A2E8`,
-
+    borderColor: `#888`,
+    borderWidth: 1,
     alignItems: `center`,
     justifyContent: `center`,
     borderRadius: 7,
@@ -292,7 +345,7 @@ const styles = StyleSheet.create({
   activeBtn: {
     width: `19%`,
     height: 35,
-    backgroundColor: `#82589F`,
+    backgroundColor: `#ACB6E5`,
 
     alignItems: `center`,
     justifyContent: `center`,
@@ -307,6 +360,13 @@ const styles = StyleSheet.create({
     shadowRadius: 2.1,
 
     elevation: 18,
+  },
+
+  listBox: {
+    width: `100%`,
+    flexDirection: `row`,
+    justifyContent: `space-around`,
+    marginBottom: 7,
   },
 });
 
