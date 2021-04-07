@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import * as Location from "expo-location";
-import { getCurrentDate } from "../src/commonUtils";
+import { getCurrentDate } from "../commonUtils";
 import { LinearGradient } from "expo-linear-gradient";
 import TypeWriter from "react-native-typewriter";
 

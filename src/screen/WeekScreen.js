@@ -14,8 +14,8 @@ const WEATHER_API_KEY = `6cee116a4c0358ba4e4c62b654c4748d`;
 const Item = ({ time, temp }) => {
   return (
     <View style={styles.listBox}>
-      <Text>{time}</Text>
-      <Text>{temp}</Text>
+      <Text style={styles.listText}>{time}</Text>
+      <Text style={styles.listText2}>{`${temp}°C`}</Text>
     </View>
   );
 };
@@ -364,9 +364,26 @@ const styles = StyleSheet.create({
 
   listBox: {
     width: `100%`,
+    height: 70,
     flexDirection: `row`,
     justifyContent: `space-around`,
+    alignItems: `center`,
     marginBottom: 7,
+    backgroundColor: `#e6e6fa`,
+    borderBottomColor: `rgba(0, 0, 200, 0.3)`,
+    borderBottomWidth: 1,
+  },
+
+  listText: {
+    fontSize: 24,
+    color: `rgba(0, 0, 200, 0.3)`,
+    opacity: 0.9,
+  },
+
+  listText2: {
+    fontSize: 24,
+    color: `rgba(0, 0, 200, 0.3)`,
+    fontWeight: `600`,
   },
 });
 
